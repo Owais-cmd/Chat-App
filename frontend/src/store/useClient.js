@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from "zustand/middleware";
 import { io } from "socket.io-client"
 
-const SERVER_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"
+const SERVER_URL = import.meta.env.MODE==="development" ?"http://localhost:3000":"/"
 
 
 export const useClient = create(persist(

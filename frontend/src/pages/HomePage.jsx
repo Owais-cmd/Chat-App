@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useClient } from '../store/useClient.js';
 
-const url = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"
+const url =  import.meta.env.MODE==="development" ?"http://localhost:3000":"/"
 
 export const HomePage = () => {
     const { setRoomId, setName } = useClient();

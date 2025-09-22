@@ -3,6 +3,8 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
 
+import path from 'path';
+
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
@@ -60,6 +62,13 @@ io.on('connection', (socket) => {
   });
 })
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+  });
+}
 
 
 server.listen(3000, () => {
